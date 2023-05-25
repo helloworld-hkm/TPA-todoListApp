@@ -1,6 +1,7 @@
 
 .toggle button{
     margin:50px 20px 10px 0px ;
+   
     padding: 1px 10px;
     color: antiquewhite;
     justify-content: flex-start;
@@ -21,8 +22,7 @@ button:hover{
 .inactive{
     background-color:grey;
 }
-.h2,h3,p
-.todo-list{
+form{
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
 }

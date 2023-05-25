@@ -113,7 +113,7 @@ function TodoList() {
         )
       ) : (
         todos.map((i) => (
-          <Card className="mt-4" key={i.id}>
+          <Card className="mt-4 todo-list" key={i.id}>
             <Card.Body>
               <Stack direction="horizontal" gap={3}>
                 <div className="d-flex">

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { addTodo } from '../redux/action/todoAction';
 import { useDispatch } from 'react-redux';
-
+import './form.css'
 import Stack from 'react-bootstrap/esm/Stack';
 function FormInput({filter}) {
     const dispatch = useDispatch()
