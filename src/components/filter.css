@@ -1,0 +1,23 @@
+
+.toggle button{
+    margin:50px 20px 10px 0px ;
+   
+    padding: 1px 10px;
+    color: antiquewhite;
+    justify-content: flex-start;
+    border-radius: 20px;
+    border-style: none;
+    font-weight: 500;
+}
+.toggle{
+    display: flex;
+}
+button:hover{
+    background-color:green;
+}
+.active{
+    background-color: green;
+}
+.inactive{
+    background-color:grey;
+}
