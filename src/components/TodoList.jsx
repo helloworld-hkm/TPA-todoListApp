@@ -4,7 +4,7 @@ import { FaTrashAlt, FaPen, FaSave } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deleteTodo, editTodo, getTodo } from "../redux/action/todoAction";
+import { checkTodo, deleteTodo, editTodo, getTodo } from "../redux/action/todoAction";
 import Spinner from "react-bootstrap/Spinner";
 import "./filter.css";
 import FormInput from "./FormInput";
@@ -15,8 +15,6 @@ function TodoList() {
   const dispatch = useDispatch();
   const [selectedFilter, setSelectedFilter] = useState("all");
 
-  //   logic checkbox
-  const handleCheck = (e) => {};
   const getStyleTitle = (isDone) => {
     return {
       textDecoration: isDone ? "line-through" : "none",
@@ -27,25 +25,16 @@ function TodoList() {
       visibility: isDone ? "hidden" : "visible",
     };
   };
-
-  const handleDelete = (id) => {
-    dispatch(deleteTodo(id, selectedFilter));
-  };
-
-  // edit edit data
-
-  const handleEditInputChange = (event) => {
-    setEditTodoText(event.target.value);
-  };
+  // delete data
 
   const handleEditTodo = (todoId) => {
     setEditTodoId(todoId);
     const todoToEdit = todos.find((todo) => todo.id === todoId);
-
     setEditTodoText(todoToEdit.title);
   };
 
   const handleUpdateTodo = () => {
+    console.log("edit");
     let data = {
       id: editTodoId,
       title: editTodoText,
@@ -54,37 +43,41 @@ function TodoList() {
     dispatch(editTodo(data, selectedFilter));
     setEditTodoId("");
   };
+  // filter menu
 
-  const handleFilterChange = (filter) => {
-    setSelectedFilter(filter);
-    console.log(selectedFilter);
+  //  completed todo
+  const handleCheck = (id) => {
+    const findData =todos.find((item) => item.id== id);
+   
+    let data = {
+      id: findData.id,
+      title: findData.title,
+      isDone: !findData.isDone,
+    };
+    dispatch(checkTodo(data,selectedFilter) )
   };
-
   useEffect(() => {
     dispatch(getTodo(selectedFilter));
   }, [selectedFilter]);
   const dataFilter = selectedFilter;
-
-  // const filterIsDone = todos.filter(item => item.isDone == false).map(item => item);
-
   return (
     <>
       <FormInput filter={dataFilter} />
       <div className="toggle">
         <button
-          onClick={() => handleFilterChange("all")}
+          onClick={() => setSelectedFilter("all")}
           className={selectedFilter === "all" ? "active" : "inactive"}
         >
           All
         </button>
         <button
-          onClick={() => handleFilterChange("active")}
+          onClick={() => setSelectedFilter("active")}
           className={selectedFilter === "active" ? "active" : "inactive"}
         >
           Active
         </button>
         <button
-          onClick={() => handleFilterChange("completed")}
+          onClick={() => setSelectedFilter("completed")}
           className={selectedFilter === "completed" ? "active" : "inactive"}
         >
           Completed
@@ -118,9 +111,10 @@ function TodoList() {
               <Stack direction="horizontal" gap={3}>
                 <div className="d-flex">
                   <input
-                    type="checkbox"
+                    type="checkbox" 
                     style={{ width: "20px", height: "20px" }}
-                    onChange={handleCheck}
+                    onChange={()=>handleCheck(i.id)}
+                    checked={i.isDone}
                   />
                 </div>
 
@@ -129,7 +123,7 @@ function TodoList() {
                     type="text"
                     className="me-auto form-control"
                     value={editTodoText}
-                    onChange={handleEditInputChange}
+                    onChange={()=>setEditTodoText(event.target.value)}
                   />
                 ) : (
                   <div style={getStyleTitle(i.isDone)}>
@@ -157,7 +151,7 @@ function TodoList() {
 
                 <div
                   style={getStyleIcon(i.isDone)}
-                  onClick={() => handleDelete(i.id)}
+                  onClick={() => dispatch(deleteTodo(i.id, selectedFilter))}
                 >
                   <FaTrashAlt />
                 </div>

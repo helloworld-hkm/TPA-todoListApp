@@ -4,11 +4,6 @@ const initialState = {
   todos: [],
   isLoading: false,
 };
-
-// action
-
-
-// end of action
 function toDoReducer(state = initialState, action) {
   switch (action.type) {
     case START:
