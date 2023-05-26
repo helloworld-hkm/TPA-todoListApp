@@ -62,6 +62,7 @@ function TodoList() {
   const dataFilter = selectedFilter;
   return (
     <>
+   
       <FormInput filter={dataFilter} />
       <div className="toggle">
         <button
@@ -160,6 +161,8 @@ function TodoList() {
           </Card>
         ))
       )}
+      
+      
     </>
   );
 }

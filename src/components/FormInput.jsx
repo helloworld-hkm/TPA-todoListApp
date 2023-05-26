@@ -31,7 +31,7 @@ function FormInput({filter}) {
             onChange={(e) => setInputTodo(e.target.value)}
             required
           />
-          <button className="btn btn-primary">Add</button>
+          <button className="btn" style={{backgroundColor:"darkblue",color:"white"}}>Add</button>
         </Stack>
       </form>
         </>
