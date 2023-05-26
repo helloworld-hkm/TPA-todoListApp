@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { checkTodo, deleteTodo, editTodo, getTodo } from "../redux/action/todoAction";
 import Spinner from "react-bootstrap/Spinner";
-import "./filter.css";
 import FormInput from "./FormInput";
 function TodoList() {
   const [editTodoId, setEditTodoId] = useState(null);
