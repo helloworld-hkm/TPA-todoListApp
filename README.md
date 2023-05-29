@@ -61,6 +61,7 @@ Aplikasi Todo List ini dibangun menggunakan beberapa teknologi utama:
 - **React Bootstrap**: Framework UI yang mempermudah pengembangan aplikasi dengan komponen UI yang sudah siap pakai.
 - **React Redux**: Library untuk mengelola state aplikasi dengan menggunakan arsitektur Flux.
 - **Vercel**: Platform untuk deployment aplikasi web secara mudah dan cepat.
+- **React Thunk**: middleware yang digunakan bersama dengan Redux di aplikasi React untuk mengelola pemanggilan API atau tindakan asinkron lainnya
 
 ## Mock API
 
